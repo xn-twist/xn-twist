@@ -8,4 +8,4 @@ This project is currently under development.
 
 ## Usage
 
-`python3 intl_domain_finder.py paypal.com`
+`python3 intl_domain_squat_finder.py paypal.com`
