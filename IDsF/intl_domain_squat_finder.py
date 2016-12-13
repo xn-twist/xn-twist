@@ -71,10 +71,11 @@ def get_spoofable_charset(arguments):
     dataset_paths = {
         'cyrillic_complete_advanced': "complete/cyrillic_advanced.json",
         'cyrillic_complete_basic': "complete/cyrillic_basic.json",
-        'greek_complete': "complete/greek_basic.json",
-        'greek_simplified': "simplified/greek_simplified.json",
+        'cyrillic_simplified': "simplified/cyrillic_simplified.json",
         'latin_complete': "complete/latin_basic.json",
         'latin_simplified': "simplified/latin_simplified.json",
+        'greek_complete': "complete/greek_basic.json",
+        'greek_simplified': "simplified/greek_simplified.json"
     }
 
     for arg_name, arg_value in arguments._get_kwargs():
