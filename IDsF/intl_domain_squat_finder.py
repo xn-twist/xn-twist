@@ -23,7 +23,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 # ----------------------------------------------------------------------------
-"""Find internationalized domain squats of a given domain."""
+"""Find internationalized domain-squats of a given domain."""
 
 
 import argparse
@@ -36,7 +36,7 @@ import urllib.parse
 def init_parser():
     """Initialize the argument parser."""
     parser = argparse.ArgumentParser(description='Find internationalized ' +
-                                                 'domain squats')
+                                                 'domain-squats')
 
     # get domain from which internationalized domains squats will be derived
     parser.add_argument('domain', help='Domain name from which to search.')
