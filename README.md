@@ -13,10 +13,10 @@ usage: intl_domain_squat_finder.py [-h] [-cca] [-ccb] [-cs] [-lc] [-ls] [-gc]
                                    [-gs]
                                    domain
 
-Find internationalized domain-squats
+Find internationalized domain-squats.
 
 positional arguments:
-  domain                Domain name from which to search.
+  domain                Domain name from which to search
 
 optional arguments:
   -h, --help            show this help message and exit

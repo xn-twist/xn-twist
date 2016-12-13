@@ -36,10 +36,10 @@ import urllib.parse
 def init_parser():
     """Initialize the argument parser."""
     parser = argparse.ArgumentParser(description='Find internationalized ' +
-                                                 'domain-squats')
+                                                 'domain-squats.')
 
     # get domain from which internationalized domains squats will be derived
-    parser.add_argument('domain', help='Domain name from which to search.')
+    parser.add_argument('domain', help='Domain name from which to search')
 
     # dataset arguments to create possible internationalized domain squats
     parser.add_argument('-cca', '--cyrillic_complete_advanced',
