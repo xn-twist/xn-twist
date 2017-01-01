@@ -32,6 +32,8 @@ import json
 import os
 import urllib.parse
 
+import dns.resolver
+
 
 def init_parser():
     """Initialize the argument parser."""
@@ -59,6 +61,8 @@ def init_parser():
                         help='Use complete Greek character set')
     parser.add_argument('-gs', '--greek_simplified', action='store_true',
                         help='Use simplified Greek character set')
+    parser.add_argument('-d', '--dns', action='store_true',
+                        help='Query DNS for each domain')
 
     return parser.parse_args()
 
@@ -155,14 +159,35 @@ def get_possible_domain_squats(domain_name, combinations, SPOOFABLE_CHARS):
     return domains
 
 
-def display_possible_domain_squats(possible_domain_squats, tld):
+def get_domain_dns(domain):
+    """Get the DNS record, if any, for the given domain."""
+    dns_records = None
+
+    try:
+        # get the dns resolutions for this domain
+        dns_results = dns.resolver.query(domain)
+        dns_records = [ip.address for ip in dns_results]
+    except dns.resolver.NXDOMAIN as e:
+        # the domain does not exist so dns resolutions will remain None
+        pass
+
+    return dns_records
+
+
+def display_possible_domain_squats(possible_domain_squats, tld, dns_query):
     """Display each of the possible, internationalized domain squats."""
     print("{} results found.\n".format(len(possible_domain_squats)))
 
     for squat in possible_domain_squats:
-        print("{}.{}  -".format(squat, tld) +
-              "  xn--{}.{}".format(
-              str(squat.encode("punycode").decode("utf-8")), tld))
+        domain_name = "xn--{}.{}".format(
+                      str(squat.encode("punycode").decode("utf-8")), tld)
+        if dns_query:
+            domain_dns = set(get_domain_dns(domain_name))
+
+            print("{}.{}".format(squat, tld), domain_name, domain_dns,
+                  sep='\t')
+        else:
+            print("{}.{}".format(squat, tld), domain_name, sep='\t')
 
 
 def main():
@@ -194,7 +219,7 @@ def main():
                                                         SPOOFABLE_CHARS)
 
     # display each possible domain squat
-    display_possible_domain_squats(possible_domain_squats, tld)
+    display_possible_domain_squats(possible_domain_squats, tld, args.dns)
 
 
 if __name__ == '__main__':
