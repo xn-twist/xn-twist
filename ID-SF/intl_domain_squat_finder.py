@@ -44,21 +44,25 @@ def init_parser():
     parser.add_argument('domain', help='Domain name from which to search')
 
     # dataset arguments to create possible internationalized domain squats
-    parser.add_argument('-cca', '--cyrillic_complete_advanced',
+    parser.add_argument('-cc', '--cyrillic_complete',
                         action='store_true',
-                        help='Use complete, advanced Cyrillic character set')
-    parser.add_argument('-ccb', '--cyrillic_complete_basic',
+                        help='Use complete Cyrillic character set')
+    parser.add_argument('-ca', '--cyrillic_advanced',
                         action='store_true',
-                        help='Use complete, basic Cyrillic character set')
+                        help='Use advanced Cyrillic character set')
     parser.add_argument('-cs', '--cyrillic_simplified',
                         action='store_true',
                         help='Use simplified Cyrillic character set')
     parser.add_argument('-lc', '--latin_complete', action='store_true',
                         help='Use complete Latin character set')
+    parser.add_argument('-la', '--latin_advanced', action='store_true',
+                        help='Use advanced Latin character set')
     parser.add_argument('-ls', '--latin_simplified', action='store_true',
                         help='Use simplified Latin character set')
     parser.add_argument('-gc', '--greek_complete', action='store_true',
                         help='Use complete Greek character set')
+    parser.add_argument('-ga', '--greek_advanced', action='store_true',
+                        help='Use advanced Greek character set')
     parser.add_argument('-gs', '--greek_simplified', action='store_true',
                         help='Use simplified Greek character set')
     parser.add_argument('-d', '--dns', action='store_true',
@@ -73,12 +77,14 @@ def get_spoofable_charset(arguments):
 
     base_dataset_path = os.path.join(os.getcwd(), "./data/")
     dataset_paths = {
-        'cyrillic_complete_advanced': "complete/cyrillic_advanced.json",
-        'cyrillic_complete_basic': "complete/cyrillic_basic.json",
+        'cyrillic_complete': "complete/cyrillic_complete.json",
+        'cyrillic_advanced': "advanced/cyrillic_advanced.json",
         'cyrillic_simplified': "simplified/cyrillic_simplified.json",
-        'latin_complete': "complete/latin_basic.json",
+        'latin_complete': "complete/latin_complete.json",
+        'latin_advanced': "advanced/latin_advanced.json",
         'latin_simplified': "simplified/latin_simplified.json",
-        'greek_complete': "complete/greek_basic.json",
+        'greek_complete': "complete/greek_complete.json",
+        'greek_advanced': "advanced/greek_advanced.json",
         'greek_simplified': "simplified/greek_simplified.json"
     }
 
