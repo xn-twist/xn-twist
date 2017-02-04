@@ -75,7 +75,7 @@ def get_spoofable_charset(arguments):
     """Retrieve and return the data from the desired character sets."""
     spoofable_charset = dict()
 
-    base_dataset_path = os.path.join(os.getcwd(), "./data/")
+    base_dataset_path = os.path.join(os.getcwd(), "data/")
     dataset_paths = {
         'cyrillic_complete': "complete/cyrillic_complete.json",
         'cyrillic_advanced': "advanced/cyrillic_advanced.json",
