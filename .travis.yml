@@ -6,4 +6,5 @@ python:
 install:
   - pip install dnspython
 script:
-  - nosetests ./idsf/
+  - cd ./idsf/
+  - nosetests .
