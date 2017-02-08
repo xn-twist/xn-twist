@@ -1,5 +1,7 @@
 # Internationalized Domain-Squat Finder
 
+[![Build Status](https://travis-ci.org/fhightower/internationalized-domain-squat-finder.svg?branch=master)](https://travis-ci.org/fhightower/internationalized-domain-squat-finder)
+
 Find [internationalized domains](https://en.wikipedia.org/wiki/Internationalized_domain_name "Internationalized Domains") that could be used to spoof a given domain.
 
 ## Usage
