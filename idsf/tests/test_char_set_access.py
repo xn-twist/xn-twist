@@ -18,7 +18,7 @@ CHARSET_STATS = [
     },
     {
         'name': "cyrillic_simple",
-        'path': "simplified/cyrillic_simple.json",
+        'path': "simplified/cyrillic_simplified.json",
     },
     {
         'name': "greek_complete",
@@ -30,7 +30,7 @@ CHARSET_STATS = [
     },
     {
         'name': "greek_simple",
-        'path': "simplified/greek_simple.json",
+        'path': "simplified/greek_simplified.json",
     },
     {
         'name': "latin_complete",
@@ -42,7 +42,7 @@ CHARSET_STATS = [
     },
     {
         'name': "latin_simple",
-        'path': "simplified/latin_simple.json",
+        'path': "simplified/latin_simplified.json",
     },
 ]
 
