@@ -4,7 +4,10 @@ python:
   - "3.5"
   - "3.6"
 install:
-  - pip install dnspython
+  - pip install --user dnspython
+  - pip install --user codecov
 script:
   - cd ./idsf/
   - nosetests .
+after_success:
+  - codecov
