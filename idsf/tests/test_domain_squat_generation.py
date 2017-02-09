@@ -10,7 +10,7 @@ import intl_domain_squat_finder as idsf
 DEFAULT_ARGS = argparse.Namespace(cyrillic_advanced=False,
                                   cyrillic_complete=True,
                                   cyrillic_simplified=False,
-                                  dns=False, domain='test.com',
+                                  dns=False, domain='waffle.com',
                                   greek_advanced=False,
                                   greek_complete=False,
                                   greek_simplified=False,
@@ -21,7 +21,7 @@ DEFAULT_ARGS = argparse.Namespace(cyrillic_advanced=False,
 DEFAULT_EMPTY_ARGS = argparse.Namespace(cyrillic_advanced=False,
                                         cyrillic_complete=False,
                                         cyrillic_simplified=False,
-                                        dns=False, domain='test.com',
+                                        dns=False, domain='waffle.com',
                                         greek_advanced=False,
                                         greek_complete=False,
                                         greek_simplified=False,
@@ -44,7 +44,7 @@ class TestDSGeneration(unittest.TestCase):
         spoofable_chars = idsf.get_spoofable_charset(DEFAULT_ARGS)
         self.assertEqual(len(spoofable_chars), 28)
         domain_name, tld = idsf.get_domain_details(DEFAULT_ARGS.domain)
-        self.assertEqual(domain_name, "test")
+        self.assertEqual(domain_name, "waffle")
         self.assertEqual(tld, "com")
         spoofable_indices = list()
 
@@ -56,9 +56,9 @@ class TestDSGeneration(unittest.TestCase):
             count += 1
 
         combinations = list(idsf.get_combinations(spoofable_indices))
-        self.assertEqual(len(combinations), 15)
+        self.assertEqual(len(combinations), 63)
 
         domain_squats = idsf.get_possible_domain_squats(domain_name,
                                                         combinations,
                                                         spoofable_chars)
-        self.assertEqual(len(domain_squats), 191)
+        self.assertEqual(len(domain_squats), 5)
