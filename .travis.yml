@@ -9,5 +9,5 @@ install:
 script:
   - cd ./idsf/
   - nosetests .
-after_script:
+after_success:
   - codecov
