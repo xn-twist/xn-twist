@@ -8,6 +8,6 @@ install:
   - pip install codecov
 script:
   - cd ./idsf/
-  - nosetests .
+  - nosetests --with-coverage .
 after_success:
   - codecov
