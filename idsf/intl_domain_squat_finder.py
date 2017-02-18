@@ -118,7 +118,9 @@ def get_domain_details(domain):
     domain_name = parsed_domain.path.split(".")[:-1]
 
     if len(domain_name) > 1:
-        raise NotImplementedError("Currently, this script is not able to handle subdomains (or TLDs with multiple prefixes). Please try again.")
+        raise NotImplementedError("Currently, this script is not able to " +
+                                  "handle subdomains (or TLDs with multiple " +
+                                  "prefixes). Please try again.")
     else:
         domain_name = domain_name[0]
 
