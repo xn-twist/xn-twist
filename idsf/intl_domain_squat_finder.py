@@ -27,12 +27,19 @@
 
 
 import argparse
+import datetime
 import itertools
 import json
 import os
+import time
 import urllib.parse
 
 import dns.resolver
+
+
+CURRENT_DATETIME = str(datetime.datetime.today())
+CHAR_SET_VERSION = 0.1
+FUZZER_VERSION = 0.8
 
 
 def init_parser():
@@ -67,6 +74,8 @@ def init_parser():
                         help='Use simplified Greek character set')
     parser.add_argument('-d', '--dns', action='store_true',
                         help='Query DNS for each domain')
+    parser.add_argument('-o', '--output', nargs='?',
+                        help='Path to file to which results will be written')
 
     return parser.parse_args()
 
@@ -74,6 +83,7 @@ def init_parser():
 def get_spoofable_charset(arguments):
     """Retrieve and return the data from the desired character sets."""
     spoofable_charset = dict()
+    charsets_used = list()
 
     base_dataset_path = os.path.join(os.getcwd(), "data/")
     dataset_paths = {
@@ -93,6 +103,7 @@ def get_spoofable_charset(arguments):
         if arg_name in dataset_paths:
             # if we want to read this character set...
             if arg_value:
+                charsets_used.append(arg_name)
                 with open(os.path.join(base_dataset_path,
                                        dataset_paths[arg_name]),
                           'r') as data_file:
@@ -108,7 +119,7 @@ def get_spoofable_charset(arguments):
                             # add character and spoofs to the spoofable charset
                             spoofable_charset[character] = spoofs
 
-    return spoofable_charset
+    return spoofable_charset, charsets_used
 
 
 def get_domain_details(domain):
@@ -175,7 +186,7 @@ def get_possible_domain_squats(domain_name, combinations, SPOOFABLE_CHARS):
 
 def get_domain_dns(domain):
     """Get the DNS record, if any, for the given domain."""
-    dns_records = None
+    dns_records = list()
 
     try:
         # get the dns resolutions for this domain
@@ -188,20 +199,47 @@ def get_domain_dns(domain):
     return dns_records
 
 
-def display_possible_domain_squats(possible_domain_squats, tld, dns_query):
+def output_possible_domain_squats(possible_domain_squats, real_domain_name,
+                                  tld, charsets_used, dns_query,
+                                  output_file=None):
     """Display each of the possible, internationalized domain squats."""
-    print("{} results found.\n".format(len(possible_domain_squats)))
+    output_json = dict()
+    output_json[CURRENT_DATETIME] = dict()
+    output_json[CURRENT_DATETIME]["{}.".format(real_domain_name) +
+                                  "{}".format(tld)] = dict()
+    output_json[CURRENT_DATETIME]['character_set_version'] = CHAR_SET_VERSION
+    output_json[CURRENT_DATETIME]['fuzzer_version'] = FUZZER_VERSION
+
+    current_location = output_json[CURRENT_DATETIME]["{}.{}".format(
+        real_domain_name, tld)]
+    current_location['character_sets'] = charsets_used
+    current_location['possible_squats'] = list()
+    possible_squats_list = current_location['possible_squats']
+    current_location['results'] = len(possible_domain_squats)
 
     for squat in possible_domain_squats:
-        domain_name = "xn--{}.{}".format(
-                      str(squat.encode("punycode").decode("utf-8")), tld)
+        domain_dict = dict()
+        punycode_domain_name = "xn--{}.{}".format(squat, tld)
         if dns_query:
-            domain_dns = set(get_domain_dns(domain_name))
+            domain_dns = [dns_record for dns_record in set(get_domain_dns(
+                punycode_domain_name))]
+            domain_dict['dns'] = domain_dns
+            time.sleep(10)
 
-            print("{}.{}".format(squat, tld), domain_name, domain_dns,
-                  sep='\t')
-        else:
-            print("{}.{}".format(squat, tld), domain_name, sep='\t')
+        domain_dict['displayed'] = "{}.{}".format(squat, tld)
+        # domain_dict['displayed'] = u"" + squat + "." + tld
+        domain_dict['punycode'] = punycode_domain_name
+
+        possible_squats_list.append(domain_dict)
+
+    if output_file is not None:
+        # write the output to a file
+        with open(output_file, 'w+') as f:
+            json.dump(output_json, f, indent=4, sort_keys=True)
+            f.close()
+    else:
+        # print the output
+        print(json.dumps(output_json, indent=4, sort_keys=True))
 
 
 def main():
@@ -209,7 +247,7 @@ def main():
     # parse the arguments
     args = init_parser()
 
-    SPOOFABLE_CHARS = get_spoofable_charset(args)
+    SPOOFABLE_CHARS, charsets_used = get_spoofable_charset(args)
 
     # get the domain from which we should look for domain squats
     domain_name, tld = get_domain_details(args.domain)
@@ -227,13 +265,16 @@ def main():
     # find all possible combinations of the 'spoofable' indices
     combinations = list(get_combinations(spoofable_indices))
 
+    print("Found {} combinations\n".format(len(combinations)))
+
     # create each domain squat
     possible_domain_squats = get_possible_domain_squats(domain_name,
                                                         combinations,
                                                         SPOOFABLE_CHARS)
 
     # display each possible domain squat
-    display_possible_domain_squats(possible_domain_squats, tld, args.dns)
+    output_possible_domain_squats(possible_domain_squats, domain_name, tld,
+                                  charsets_used, args.dns, args.output)
 
 
 if __name__ == '__main__':
