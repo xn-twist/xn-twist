@@ -219,7 +219,8 @@ def output_possible_domain_squats(possible_domain_squats, real_domain_name,
 
     for squat in possible_domain_squats:
         domain_dict = dict()
-        punycode_domain_name = "xn--{}.{}".format(squat, tld)
+        punycode_domain_name = "xn--{}.{}".format(
+            str(squat.encode("punycode").decode("utf-8")), tld)
         if dns_query:
             domain_dns = [dns_record for dns_record in set(get_domain_dns(
                 punycode_domain_name))]
