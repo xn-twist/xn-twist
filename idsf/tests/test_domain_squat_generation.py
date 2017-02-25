@@ -35,14 +35,14 @@ class TestDSGeneration(unittest.TestCase):
 
     def test_domain_only(self):
         """Test get_spoofable_chars."""
-        spoofable_chars = idsf.get_spoofable_charset(DEFAULT_EMPTY_ARGS)
-        self.assertEqual(len(spoofable_chars), 0)
+        spoofable_chars = idsf.get_spoofable_charset(DEFAULT_EMPTY_ARGS)[0]
+        self.assertEqual(len(spoofable_chars.keys()), 0)
 
     def test_domain_squat_generation(self):
         """Test domain squat creation."""
         count = 0
-        spoofable_chars = idsf.get_spoofable_charset(DEFAULT_ARGS)
-        self.assertEqual(len(spoofable_chars), 28)
+        spoofable_chars = idsf.get_spoofable_charset(DEFAULT_ARGS)[0]
+        self.assertEqual(len(spoofable_chars.keys()), 1)
         domain_name, tld = idsf.get_domain_details(DEFAULT_ARGS.domain)
         self.assertEqual(domain_name, "waffle")
         self.assertEqual(tld, "com")
@@ -56,9 +56,10 @@ class TestDSGeneration(unittest.TestCase):
             count += 1
 
         combinations = list(idsf.get_combinations(spoofable_indices))
-        self.assertEqual(len(combinations), 63)
+        self.assertEqual(len(combinations), 1)
 
         domain_squats = idsf.get_possible_domain_squats(domain_name,
                                                         combinations,
                                                         spoofable_chars)
+        print(domain_squats)
         self.assertEqual(len(domain_squats), 5)
