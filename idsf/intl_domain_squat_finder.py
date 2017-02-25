@@ -39,7 +39,7 @@ import dns.resolver
 
 CURRENT_DATETIME = str(datetime.datetime.today())
 CHAR_SET_VERSION = 0.1
-FUZZER_VERSION = 0.8
+FUZZER_VERSION = 0.9
 
 
 def init_parser():
