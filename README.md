@@ -9,9 +9,9 @@ Find [internationalized domains](https://en.wikipedia.org/wiki/Internationalized
 ## Usage
 
 ```
-usage: intl_domain_squat_finder.py [-h] [-cc] [-ca] [-cs] [-lc] [-la] [-ls]
-                                   [-gc] [-ga] [-gs] [-d]
-                                  domain
+usage: xn_twist.py [-h] [-cc] [-ca] [-cs] [-lc] [-la] [-ls] [-gc] [-ga] [-gs]
+                   [-d] [-o [OUTPUT]]
+                   domain
 
 Find internationalized domain-squats.
 
@@ -38,23 +38,25 @@ optional arguments:
                        Use advanced Greek character set
   -gs, --greek_simplified
                        Use simplified Greek character set
-  -d, --dns            Query DNS for each domain
+  -d, --dns             Query DNS for each domain
+  -o [OUTPUT], --output [OUTPUT]
+                        Path to file to which results will be written
 ```
 
 ## Run Tests
 
 After cloning the repo, you can test it using the following commands from the top directory of this repository:
 
-- `cd idsf;`
+- `cd xn-twist;`
 - `nosetests tests/`
 
 If you do not have installed, you can also use Python's built-in [unittest](https://docs.python.org/3/library/unittest.html) command:
 
-- `cd idsf;`
+- `cd xn-twist;`
 - `python3 -m unittest`
 
 **Note:** Tests will return failures and errors if the character sets are not included. This is expected.
 
 ## Data, Data, every where...
 
-The character sets in the `data` directory of this repository are sample character sets. I have much more extensive character sets that I do not wish to publish publicly (for fear they will be used maliciously). In the near future, I will include some contact information where any interested parties can request the character sets.
+The character sets in the `xn-twist/data` directory of this repository are sample character sets. I have much more extensive character sets that I do not wish to publish publicly (for fear they will be used maliciously). In the near future, I will include some contact information where any interested parties can request the character sets.
