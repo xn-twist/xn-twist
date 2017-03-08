@@ -1,8 +1,8 @@
-# Internationalized Domain-Squat Finder
+# XN-Twist
+*Internationalized Domain-Squat Finder*
 
-[![Build Status](https://travis-ci.org/fhightower/internationalized-domain-squat-finder.svg?branch=master)](https://travis-ci.org/fhightower/internationalized-domain-squat-finder)
-[![codecov](https://codecov.io/gh/fhightower/internationalized-domain-squat-finder/branch/master/graph/badge.svg)](https://codecov.io/gh/fhightower/internationalized-domain-squat-finder)
-
+[![Build Status](https://travis-ci.org/fhightower/xn-twist.svg?branch=master)](https://travis-ci.org/fhightower/xn-twist)
+[![codecov](https://codecov.io/gh/fhightower/xn-twist/branch/master/graph/badge.svg)](https://codecov.io/gh/fhightower/xn-twist)
 
 Find [internationalized domains](https://en.wikipedia.org/wiki/Internationalized_domain_name "Internationalized Domains") that could be used to spoof a given domain.
 
