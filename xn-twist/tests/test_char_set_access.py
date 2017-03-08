@@ -5,8 +5,6 @@ import argparse
 import os
 import unittest
 
-import intl_domain_squat_finder as idsf
-
 CHARSET_STATS = [
     {
         'name': "cyrillic_complete",

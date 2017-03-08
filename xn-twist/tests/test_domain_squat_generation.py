@@ -4,7 +4,7 @@
 import argparse
 import unittest
 
-import intl_domain_squat_finder as idsf
+import xn_twist
 
 
 DEFAULT_ARGS = argparse.Namespace(cyrillic_advanced=False,
@@ -35,15 +35,15 @@ class TestDSGeneration(unittest.TestCase):
 
     def test_domain_only(self):
         """Test get_spoofable_chars."""
-        spoofable_chars = idsf.get_spoofable_charset(DEFAULT_EMPTY_ARGS)[0]
+        spoofable_chars = xn_twist.get_spoofable_charset(DEFAULT_EMPTY_ARGS)[0]
         self.assertEqual(len(spoofable_chars.keys()), 0)
 
     def test_domain_squat_generation(self):
         """Test domain squat creation."""
         count = 0
-        spoofable_chars = idsf.get_spoofable_charset(DEFAULT_ARGS)[0]
+        spoofable_chars = xn_twist.get_spoofable_charset(DEFAULT_ARGS)[0]
         self.assertEqual(len(spoofable_chars.keys()), 1)
-        domain_name, tld = idsf.get_domain_details(DEFAULT_ARGS.domain)
+        domain_name, tld = xn_twist.get_domain_details(DEFAULT_ARGS.domain)
         self.assertEqual(domain_name, "waffle")
         self.assertEqual(tld, "com")
         spoofable_indices = list()
@@ -55,10 +55,10 @@ class TestDSGeneration(unittest.TestCase):
 
             count += 1
 
-        combinations = list(idsf.get_combinations(spoofable_indices))
+        combinations = list(xn_twist.get_combinations(spoofable_indices))
         self.assertEqual(len(combinations), 1)
 
-        domain_squats = idsf.get_possible_domain_squats(domain_name,
+        domain_squats = xn_twist.get_possible_domain_squats(domain_name,
                                                         combinations,
                                                         spoofable_chars)
         print(domain_squats)
