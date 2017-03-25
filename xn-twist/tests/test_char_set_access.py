@@ -48,7 +48,8 @@ CHARSET_STATS = [
 class TestCharSetAccess(unittest.TestCase):
     """Check availability of character sets."""
 
-    def test_read_charsets(self):
+    @staticmethod
+    def test_read_charsets():
         """Ensure that all of the character sets can be read."""
         for charset in CHARSET_STATS:
             charset_path = os.path.join(os.getcwd(), "data/", charset['path'])
