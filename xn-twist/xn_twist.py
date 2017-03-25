@@ -99,25 +99,23 @@ def get_spoofable_charset(arguments):
     }
 
     for arg_name, arg_value in arguments._get_kwargs():
-        # if the argument is one that may be specifying a character set...
-        if arg_name in dataset_paths:
-            # if we want to read this character set...
-            if arg_value:
-                charsets_used.append(arg_name)
-                with open(os.path.join(base_dataset_path,
-                                       dataset_paths[arg_name]),
-                          'r') as data_file:
-                    character_set = json.load(data_file)
-                    # iterate through each char and its spoofs from char set
-                    for character, spoofs in character_set.items():
-                        # if character is already in the spoofable charset...
-                        if spoofable_charset.get(character):
-                            # append the spoofable chars to the end of the list
-                            spoofable_charset[character].extend(spoofs)
-                        # if the character is not in the spoofable charset...
-                        else:
-                            # add character and spoofs to the spoofable charset
-                            spoofable_charset[character] = spoofs
+        # if the argument specifies a dataset that we want to pull in...
+        if arg_name in dataset_paths and arg_value:
+            charsets_used.append(arg_name)
+            with open(os.path.join(base_dataset_path,
+                                   dataset_paths[arg_name]),
+                      'r') as data_file:
+                character_set = json.load(data_file)
+                # iterate through each char and its spoofs from char set
+                for character, spoofs in character_set.items():
+                    # if character is already in the spoofable charset...
+                    if spoofable_charset.get(character):
+                        # append the spoofable chars to the end of the list
+                        spoofable_charset[character].extend(spoofs)
+                    # if the character is not in the spoofable charset...
+                    else:
+                        # add character and spoofs to the spoofable charset
+                        spoofable_charset[character] = spoofs
 
     return spoofable_charset, charsets_used
 
