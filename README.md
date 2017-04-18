@@ -1,8 +1,8 @@
-# XN-Twist
+# XN Twist
 *Internationalized Domain-Squat Finder*
 
-[![Build Status](https://travis-ci.org/fhightower/xn-twist.svg?branch=master)](https://travis-ci.org/fhightower/xn-twist)
-[![codecov](https://codecov.io/gh/fhightower/xn-twist/branch/master/graph/badge.svg)](https://codecov.io/gh/fhightower/xn-twist)
+[![Build Status](https://travis-ci.org/fhightower/xn_twist.svg?branch=master)](https://travis-ci.org/fhightower/xn_twist)
+[![codecov](https://codecov.io/gh/fhightower/xn_twist/branch/master/graph/badge.svg)](https://codecov.io/gh/fhightower/xn_twist)
 
 Find [internationalized domains](https://en.wikipedia.org/wiki/Internationalized_domain_name "Internationalized Domains") that could be used to spoof a given domain.
 
@@ -47,16 +47,16 @@ optional arguments:
 
 After cloning the repo, you can test it using the following commands from the top directory of this repository:
 
-- `cd xn-twist;`
+- `cd xn_twist;`
 - `nosetests tests/`
 
 If you do not have installed, you can also use Python's built-in [unittest](https://docs.python.org/3/library/unittest.html) command:
 
-- `cd xn-twist;`
+- `cd xn_twist;`
 - `python3 -m unittest`
 
 **Note:** Tests will return failures and errors if the character sets are not included. This is expected.
 
 ## Data, Data, every where...
 
-The character sets in the `xn-twist/data` directory of this repository are sample character sets. I have much more extensive character sets that I do not wish to publish publicly (for fear they will be used maliciously). In the near future, I will include some contact information where any interested parties can request the character sets.
+The character sets in the `xn_twist/data` directory of this repository are sample character sets. I have much more extensive character sets that I do not wish to publish publicly (for fear they will be used maliciously). In the near future, I will include some contact information where any interested parties can request the character sets.
