@@ -1,1 +1,1 @@
-"""Internationalized Domain Squat Finder tests."""
+# -*- coding: utf-8 -*-
