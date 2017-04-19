@@ -12,7 +12,7 @@ XN Twist
 .. image:: https://img.shields.io/pypi/v/xn_twist.svg
         :target: https://pypi.python.org/pypi/xn_twist
 
-.. image:: https://codecov.io/gh/xn_twist/branch/master/graph/badge.svg
+.. image:: https://codecov.io/gh/fhightower/xn_twist/branch/master/graph/badge.svg
         :target: https://codecov.io/gh/xn_twist
 
 .. image:: https://readthedocs.org/projects/xn_twist/badge/?version=latest
