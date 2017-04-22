@@ -10,7 +10,7 @@ XN Twist
         :target: https://travis-ci.org/fhightower/xn_twist
 
 .. image:: https://codecov.io/gh/fhightower/xn_twist/branch/master/graph/badge.svg
-        :target: https://codecov.io/gh/xn_twist
+        :target: https://codecov.io/gh/fhightower/xn_twist
 
 .. image:: https://readthedocs.org/projects/xn_twist/badge/?version=latest
         :target: https://xn_twist.readthedocs.io/en/latest/?badge=latest
