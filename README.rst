@@ -71,26 +71,18 @@ Run Tests
 
 After cloning the repo, you can test it using the following commands from the base directory of this repository:
 
-- ``cd xn_twist;``
-- ``nosetests tests/``
+- ``cd xn-twist;``
+- ``pytest``
 
-If you do not have installed, you can also use Python's built-in [unittest](https://docs.python.org/3/library/unittest.html) command:
-
-- ``cd xn_twist;``
-- ``python3 -m unittest``
-
-**Note:** Tests will return failures and errors if the character sets are not included. This is expected.
-
-Data, Data, every where...
+Data, Data, Everywhere...
 ==========================
 
-The character sets in the ``xn_twist/data`` directory of this repository are sample character sets. I have much more extensive character sets that I do not wish to publish publicly (for fear they will be used maliciously). In the near future, I will include some contact information where any interested parties can request the character sets.
+*More details coming very soon*
 
 Credits
 =======
 
-This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+This package was created with Cookiecutter_ and the `fhightower/python-project-template`_ project template.
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
-
+.. _`fhightower/python-project-template`: https://github.com/fhightower/python-project-template
