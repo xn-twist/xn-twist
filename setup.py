@@ -18,13 +18,13 @@ test_requirements = [
 ]
 
 setup(
-    name='xn_twist',
+    name='xn-twist',
     version='0.2.0',
-    description="Internationalized Domain-Squat Finder",
+    description="Unicode Domain-Squat Finder",
     long_description=readme + '\n\n' + history,
     author="Floyd Hightower",
     author_email='',
-    url='https://github.com/fhightower/xn_twist',
+    url='https://github.com/xn-twist/xn-twist',
     packages=[
         'xn_twist',
     ],

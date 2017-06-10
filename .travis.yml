@@ -26,5 +26,5 @@ deploy:
     secure: PLEASE_REPLACE_ME
   on:
     tags: true
-    repo: fhightower/xn_twist
+    repo: xn-twist/xn-twist
     condition: $TOXENV == py35

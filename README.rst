@@ -2,25 +2,28 @@
 XN Twist
 ===============================
 
-
 .. image:: https://img.shields.io/pypi/v/xn_twist.svg
         :target: https://pypi.python.org/pypi/xn_twist
 
-.. image:: https://img.shields.io/travis/fhightower/xn_twist.svg
-        :target: https://travis-ci.org/fhightower/xn_twist
+.. image:: https://travis-ci.org/xn-twist/xn-twist.svg?branch=master
+    :target: https://travis-ci.org/xn-twist/xn-twist
 
-.. image:: https://codecov.io/gh/fhightower/xn_twist/branch/master/graph/badge.svg
-        :target: https://codecov.io/gh/fhightower/xn_twist
+.. image:: https://codecov.io/gh/xn-twist/xn-twist/branch/master/graph/badge.svg
+  :target: https://codecov.io/gh/xn-twist/xn-twist
 
-.. image:: https://readthedocs.org/projects/xn_twist/badge/?version=latest
-        :target: https://xn_twist.readthedocs.io/en/latest/?badge=latest
+.. image:: https://readthedocs.org/projects/xn-twist/badge/?version=latest
+        :target: http://xn-twist.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
 
-.. image:: https://pyup.io/repos/github/fhightower/xn_twist/shield.svg
-     :target: https://pyup.io/repos/github/fhightower/xn_twist/
+.. image:: https://pyup.io/repos/github/xn-twist/xn-twist/shield.svg
+     :target: https://pyup.io/repos/github/xn-twist/xn-twist/
      :alt: Updates
 
-*Internationalized Domain-Squat Finder*
+.. image:: https://www.quantifiedcode.com/api/v1/project/7024cddb727449fb8ae21ebd29fdc459/badge.svg
+        :target: https://www.quantifiedcode.com/app/project/7024cddb727449fb8ae21ebd29fdc459
+        :alt: Code issues
+
+*Unicode Domain-Squat Finder*
 
 Installation
 ============
