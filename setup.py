@@ -16,7 +16,7 @@ test_requirements = [
 
 setup(
     name='xn-twist',
-    version='0.2.0',
+    version='0.2.1',
     description="Unicode Domain-Squat Finder",
     long_description=readme,
     author="Floyd Hightower",
