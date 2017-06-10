@@ -6,9 +6,6 @@ from setuptools import setup
 with open('README.rst') as readme_file:
     readme = readme_file.read()
 
-with open('HISTORY.rst') as history_file:
-    history = history_file.read()
-
 requirements = [
     "dnspython"
 ]
@@ -21,7 +18,7 @@ setup(
     name='xn-twist',
     version='0.2.0',
     description="Unicode Domain-Squat Finder",
-    long_description=readme + '\n\n' + history,
+    long_description=readme,
     author="Floyd Hightower",
     author_email='',
     url='https://github.com/xn-twist/xn-twist',
