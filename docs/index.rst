@@ -1,4 +1,4 @@
-Welcome to XN Twist's documentation!
+Welcome to the XN Twist Documentation!
 ======================================
 
 Contents:
@@ -7,10 +7,8 @@ Contents:
    :maxdepth: 2
 
    readme
-   installation
-   usage
    contributing
-   authorshistory
+   modules
 
 Indices and tables
 ==================

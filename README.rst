@@ -2,8 +2,8 @@
 XN Twist
 ===============================
 
-.. image:: https://img.shields.io/pypi/v/xn_twist.svg
-        :target: https://pypi.python.org/pypi/xn_twist
+.. image:: https://img.shields.io/pypi/v/xn-twist.svg
+        :target: https://pypi.python.org/pypi/xn-twist
 
 .. image:: https://travis-ci.org/xn-twist/xn-twist.svg?branch=master
     :target: https://travis-ci.org/xn-twist/xn-twist
@@ -28,7 +28,48 @@ XN Twist
 Installation
 ============
 
-*More details coming soon...*
+Stable release
+--------------
+
+To install XN Twist, run this command in your terminal:
+
+.. code-block:: console
+
+    pip install xn-twist
+
+This is the preferred method to install XN Twist, as it will always install the most recent stable release. 
+
+If you don't have `pip`_ installed, this `Python installation guide`_ can guide
+you through the process.
+
+.. _pip: https://pip.pypa.io
+.. _Python installation guide: http://docs.python-guide.org/en/latest/starting/installation/
+
+From sources
+------------
+
+The sources for XN Twist can be downloaded from the `Github repo`_.
+
+You can either clone the public repository:
+
+.. code-block:: console
+
+    $ git clone git://github.com/xn-twist/xn-twist
+
+Or download the `tarball`_:
+
+.. code-block:: console
+
+    $ curl  -OL https://github.com/xn-twist/xn-twist/tarball/master
+
+Once you have a copy of the source, you can install it with:
+
+.. code-block:: console
+
+    $ python setup.py install
+
+.. _Github repo: https://github.com/xn-twist/xn-twist
+.. _tarball: https://github.com/xn-twist/xn-twist/tarball/master
 
 Usage
 =====

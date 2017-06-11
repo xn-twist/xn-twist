@@ -12,8 +12,6 @@ import os
 
 import pytest
 
-from xn_twist import xn_twist
-
 
 @pytest.fixture
 def character_sets():
@@ -64,5 +62,5 @@ def test_char_set_access(character_sets):
     """Ensure that all of the character sets can be read."""
     for charset in character_sets:
         charset_path = os.path.join(os.getcwd(), "data/", charset['path'])
-        with open(charset_path) as f:
+        with open(charset_path):
             pass
