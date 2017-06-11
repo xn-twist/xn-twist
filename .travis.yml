@@ -7,24 +7,20 @@ deploy:
     user: tagsarmenian
     password:
       secure: C5RBV7FIs29B/2LWeKNX7bMH3OtYw1weJJonicmqNx7zFyZ3e7C5RsrxjhA/nqyCPm1WO5cg8/NRSSv6+yogAiMa7nx1k5YGeg8fL6SC7Q4R/lik1sB1l6QgxaFQ9pE+oaZHruJFpNS6sbNQMmhNT0oiOtOF5nSeeqHMfuzgQMp4jIViZecgRbAk3AcbJLfnC8wxUgGn7RDBcTYGG7CZ2+Muc8IDHkLNl02pXH5AZVbDkr/q0TAde8Djgf4ZAMfB9wRiPPhDEYB7LaVEwVe/kyyGFTLfM3R2Zbj1Y/iEDZPKDkwDu4g+wFzfYG0wvhoK4693CnSDba+PiBIgUMKvREPFncELSArXQbgBqlIEeTZf4CrtV5zQ3V8hP4tWrJWBl+F2ue1y/Zxt2uyf5m1LoyvpaymB1D9Vp+LMcEmM9IUgLhOP/W0SDTA4AFwwI8mDKFR2CRyBxnhZkCqKeRbCkuEi+moPkqc0qEQzoH0Mx1qRlZUS/bmu/udJ5+NuZT2Kkgev70BzEMpilHF3dIm37F5XAuMFHjpunUj8opDbXDpMhjkI+btx1uDP7MzaywdAFWwSxDr2SaD05PyBZ+5nLjZq/ZTcOjK3kFrvzhmWtYedrWOSeeilKD3sLYtLSqG7d8I3ITUm+Q+UPGlJTQJFvvu8pP2JI1NZO2y5yxwTgqs=
-    on:
-      branch:
-        - dev
-        - master
-      tags: false
-      repo: xn-twist/xn-twist
+    true:
       condition: $TOXENV == py35
+      repo: xn-twist/xn-twist
+      tags: false
     # production pypi
   - provider: pypi
     distributions: sdist
     user: cartiergoldfinch
     password:
       secure: wQTqxMolhSm/IZlGwGpC/+6SNkavkrNLEgwuKM34r3S8jO6CxJQXLM5TvVaUARQONP2nEEmVadQ6vHdBIPgb6lFa+/KoQWCPOgwb7fI9PYxAW40L1BLty/r6zAYxfSxymR76VGtr20rTsplmQOnuYAE9bnGYRrXq3bAr655rmomdgKE2UYk/Pqxf/zwrSis7QMLopKw2bb0WvXLfJclyLPeFNLTWkC8U75ubWsR67N2cAVHZROD7JXWaqDqZBy+WKG/d8ta433WPFDp6KS9pOjhBakP0X/OYMx6Kq0UJK0MCL9j+EiBitCSlfCo6PiDgr4CN/uT+S+EhCuXBvEyuwGz98CkXjNxzEVY7xY32hAJtgGlmlt8YhyHz4Tr7g9NDQAbsc71Zn5sUznaKC2GpI8hevRaFRtam2NpiI5wse/E+tkDv3vJgQZ8w5e15vN3JTDMs0rM9uozb5qzy3Os08r6Z4zwIHZEVhY9JJzSWwJntUxTOJH1MxXtiiym90HXKv3L0ed+smC5eX69hE32iLPEa6sbR0zBmOZiuDg/dFhDdhPd4Rdp+px7C1XtEJ0v7KDAkwuhaY8EpQhvw4x0fYOgXCT8nMNPhV4g7VtByovb2B0G54mZfnvt5M+KT7gSvhyVRivYl0NdqZH8mCe9wTzsoayV5jRMGC18VXs3VRUg=
-    on:
-      branch: master
+    true:
+      condition: $TOXENV == py35
       repo: xn-twist/xn-twist
       tags: true
-      condition: $TOXENV == py35
 env:
 - TOXENV=py35
 - TOXENV=py34
