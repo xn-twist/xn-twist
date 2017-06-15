@@ -19,8 +19,8 @@ XN Twist
      :target: https://pyup.io/repos/github/xn-twist/xn-twist/
      :alt: Updates
 
-.. image:: https://www.quantifiedcode.com/api/v1/project/7024cddb727449fb8ae21ebd29fdc459/badge.svg
-        :target: https://www.quantifiedcode.com/app/project/7024cddb727449fb8ae21ebd29fdc459
+.. image:: https://www.quantifiedcode.com/api/v1/project/a9b6f9760c634223aca60788d0dffb6e/badge.svg
+        :target: https://www.quantifiedcode.com/app/project/a9b6f9760c634223aca60788d0dffb6e
         :alt: Code issues
 
 *Unicode Domain-Squat Finder*
