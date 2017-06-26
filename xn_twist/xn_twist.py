@@ -18,8 +18,9 @@ from xntwist_python_sdk import xntwist_python
 
 
 CURRENT_DATETIME = str(datetime.datetime.today())
-CHAR_SET_VERSION = 0.1
-FUZZER_VERSION = 0.9
+# TODO: implement the char-set-version on the API/sdk
+CHAR_SET_VERSION = '0.1'
+FUZZER_VERSION = '0.3.1'
 
 
 def init_parser():
