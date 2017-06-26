@@ -10,11 +10,11 @@ import argparse
 import datetime
 import itertools
 import json
-import os
 import time
 import urllib.parse
 
 import dns.resolver
+from xntwist_python_sdk import xntwist_python
 
 
 CURRENT_DATETIME = str(datetime.datetime.today())
@@ -24,34 +24,13 @@ FUZZER_VERSION = 0.9
 
 def init_parser():
     """Initialize the argument parser."""
-    parser = argparse.ArgumentParser(description='Find internationalized ' +
+    parser = argparse.ArgumentParser(description='Find Unicode ' +
                                                  'domain-squats.')
 
     # get domain from which internationalized domains squats will be derived
     parser.add_argument('domain', help='Domain name from which to search')
 
-    # dataset arguments to create possible internationalized domain squats
-    parser.add_argument('-cc', '--cyrillic_complete',
-                        action='store_true',
-                        help='Use complete Cyrillic character set')
-    parser.add_argument('-ca', '--cyrillic_advanced',
-                        action='store_true',
-                        help='Use advanced Cyrillic character set')
-    parser.add_argument('-cs', '--cyrillic_simplified',
-                        action='store_true',
-                        help='Use simplified Cyrillic character set')
-    parser.add_argument('-lc', '--latin_complete', action='store_true',
-                        help='Use complete Latin character set')
-    parser.add_argument('-la', '--latin_advanced', action='store_true',
-                        help='Use advanced Latin character set')
-    parser.add_argument('-ls', '--latin_simplified', action='store_true',
-                        help='Use simplified Latin character set')
-    parser.add_argument('-gc', '--greek_complete', action='store_true',
-                        help='Use complete Greek character set')
-    parser.add_argument('-ga', '--greek_advanced', action='store_true',
-                        help='Use advanced Greek character set')
-    parser.add_argument('-gs', '--greek_simplified', action='store_true',
-                        help='Use simplified Greek character set')
+    # other configurations
     parser.add_argument('-d', '--dns', action='store_true',
                         help='Query DNS for each domain')
     parser.add_argument('-o', '--output', nargs='?',
@@ -60,44 +39,15 @@ def init_parser():
     return parser.parse_args()
 
 
-def get_spoofable_charset(arguments):
+def get_spoofable_charset():
     """Retrieve and return the data from the desired character sets."""
-    spoofable_charset = dict()
-    charsets_used = list()
+    # instantiate an instance of the XN-Twist Python SDK
+    xn_sdk = xntwist_python.XnTwistSDK()
 
-    base_dataset_path = os.path.join(os.getcwd(), "data/")
-    dataset_paths = {
-        'cyrillic_complete': "complete/cyrillic_complete.json",
-        'cyrillic_advanced': "advanced/cyrillic_advanced.json",
-        'cyrillic_simplified': "simplified/cyrillic_simplified.json",
-        'latin_complete': "complete/latin_complete.json",
-        'latin_advanced': "advanced/latin_advanced.json",
-        'latin_simplified': "simplified/latin_simplified.json",
-        'greek_complete': "complete/greek_complete.json",
-        'greek_advanced': "advanced/greek_advanced.json",
-        'greek_simplified': "simplified/greek_simplified.json"
-    }
+    # pull the data from the API
+    dataset = xn_sdk.retrieve_dataset()
 
-    for arg_name, arg_value in arguments._get_kwargs():
-        # if the argument specifies a dataset that we want to pull in...
-        if arg_name in dataset_paths and arg_value:
-            charsets_used.append(arg_name)
-            with open(os.path.join(base_dataset_path,
-                                   dataset_paths[arg_name]),
-                      'r') as data_file:
-                character_set = json.load(data_file)
-                # iterate through each char and its spoofs from char set
-                for character, spoofs in character_set.items():
-                    # if character is already in the spoofable charset...
-                    if spoofable_charset.get(character):
-                        # append the spoofable chars to the end of the list
-                        spoofable_charset[character].extend(spoofs)
-                    # if the character is not in the spoofable charset...
-                    else:
-                        # add character and spoofs to the spoofable charset
-                        spoofable_charset[character] = spoofs
-
-    return spoofable_charset, charsets_used
+    return dataset
 
 
 def get_domain_details(domain):
@@ -178,8 +128,7 @@ def get_domain_dns(domain):
 
 
 def output_possible_domain_squats(possible_domain_squats, real_domain_name,
-                                  tld, charsets_used, dns_query,
-                                  output_file=None):
+                                  tld, dns_query, output_file=None):
     """Display each of the possible, internationalized domain squats."""
     output_json = dict()
     output_json[CURRENT_DATETIME] = dict()
@@ -190,7 +139,6 @@ def output_possible_domain_squats(possible_domain_squats, real_domain_name,
 
     current_location = output_json[CURRENT_DATETIME]["{}.{}".format(
         real_domain_name, tld)]
-    current_location['character_sets'] = charsets_used
     current_location['possible_squats'] = list()
     possible_squats_list = current_location['possible_squats']
     current_location['results'] = len(possible_domain_squats)
@@ -226,7 +174,7 @@ def main():
     # parse the arguments
     args = init_parser()
 
-    SPOOFABLE_CHARS, charsets_used = get_spoofable_charset(args)
+    SPOOFABLE_CHARS = get_spoofable_charset()
 
     # get the domain from which we should look for domain squats
     domain_name, tld = get_domain_details(args.domain)
@@ -253,7 +201,7 @@ def main():
 
     # display each possible domain squat
     output_possible_domain_squats(possible_domain_squats, domain_name, tld,
-                                  charsets_used, args.dns, args.output)
+                                  args.dns, args.output)
 
 
 if __name__ == '__main__':

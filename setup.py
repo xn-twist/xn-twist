@@ -8,6 +8,7 @@ with open('README.rst') as readme_file:
 
 requirements = [
     "dnspython"
+    "xntwist_python_sdk"
 ]
 
 test_requirements = [
