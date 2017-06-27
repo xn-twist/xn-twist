@@ -11,9 +11,9 @@ import datetime
 import itertools
 import json
 import time
-import urllib.parse
 
 import dns.resolver
+import tldextract
 from xntwist_python_sdk import xntwist_python
 
 
@@ -53,20 +53,14 @@ def get_spoofable_charset():
 
 def get_domain_details(domain):
     """Return the domain name and the top level domain (tld)."""
-    parsed_domain = urllib.parse.urlparse(domain)
+    parsed_domain = tldextract.extract(domain)
 
-    domain_name = parsed_domain.path.split(".")[:-1]
+    if parsed_domain.subdomain:
+        print("Currently, subdomains are not twisted and will be ignored. " +
+              "If you'd like to see this functionality added, let me know " +
+              "here: https://github.com/xn-twist/xn-twist/issues/17.")
 
-    if len(domain_name) > 1:
-        raise NotImplementedError("Currently, this script is not able to " +
-                                  "handle subdomains (or TLDs with multiple " +
-                                  "prefixes). Please try again.")
-    else:
-        domain_name = domain_name[0]
-
-    tld = parsed_domain.path.split(".")[1].split("/")[0]
-
-    return domain_name, tld
+    return parsed_domain.domain, parsed_domain.suffix
 
 
 def get_combinations(index_list):
@@ -129,17 +123,17 @@ def get_domain_dns(domain):
 
 
 def output_possible_domain_squats(possible_domain_squats, real_domain_name,
-                                  tld, dns_query, output_file=None):
+                                  domain_suffix, dns_query, output_file=None):
     """Display each of the possible, internationalized domain squats."""
     output_json = dict()
     output_json[CURRENT_DATETIME] = dict()
     output_json[CURRENT_DATETIME]["{}.".format(real_domain_name) +
-                                  "{}".format(tld)] = dict()
+                                  "{}".format(domain_suffix)] = dict()
     output_json[CURRENT_DATETIME]['character_set_version'] = CHAR_SET_VERSION
     output_json[CURRENT_DATETIME]['fuzzer_version'] = FUZZER_VERSION
 
     current_location = output_json[CURRENT_DATETIME]["{}.{}".format(
-        real_domain_name, tld)]
+        real_domain_name, domain_suffix)]
     current_location['possible_squats'] = list()
     possible_squats_list = current_location['possible_squats']
     current_location['results'] = len(possible_domain_squats)
@@ -147,14 +141,14 @@ def output_possible_domain_squats(possible_domain_squats, real_domain_name,
     for squat in possible_domain_squats:
         domain_dict = dict()
         punycode_domain_name = "xn--{}.{}".format(
-            str(squat.encode("punycode").decode("utf-8")), tld)
+            str(squat.encode("punycode").decode("utf-8")), domain_suffix)
         if dns_query:
             domain_dns = [dns_record for dns_record in set(get_domain_dns(
                 punycode_domain_name))]
             domain_dict['dns'] = domain_dns
             time.sleep(10)
 
-        domain_dict['displayed'] = "{}.{}".format(squat, tld)
+        domain_dict['displayed'] = "{}.{}".format(squat, domain_suffix)
         # domain_dict['displayed'] = u"" + squat + "." + tld
         domain_dict['punycode'] = punycode_domain_name
 
@@ -178,7 +172,7 @@ def main():
     SPOOFABLE_CHARS = get_spoofable_charset()
 
     # get the domain from which we should look for domain squats
-    domain_name, tld = get_domain_details(args.domain)
+    domain_name, domain_suffix = get_domain_details(args.domain)
 
     count = 0
     spoofable_indices = list()
@@ -201,8 +195,8 @@ def main():
                                                         SPOOFABLE_CHARS)
 
     # display each possible domain squat
-    output_possible_domain_squats(possible_domain_squats, domain_name, tld,
-                                  args.dns, args.output)
+    output_possible_domain_squats(possible_domain_squats, domain_name,
+                                  domain_suffix, args.dns, args.output)
 
 
 if __name__ == '__main__':
