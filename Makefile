@@ -86,3 +86,6 @@ dist: clean ## builds source and wheel package
 
 install: clean ## install the package to the active Python's site-packages
 	python setup.py install
+
+upstream: ## set the upstream for this repo (handy for development)
+	git remote add upstream https://github.com/xn-twist/xn-twist.git
