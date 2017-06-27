@@ -76,49 +76,33 @@ Usage
 
 .. code-block:: shell
 
-    usage: xn_twist.py [-h] [-cc] [-ca] [-cs] [-lc] [-la] [-ls] [-gc] [-ga] [-gs] [-d] [-o [OUTPUT]] domain
+    usage: xn_twist.py [-h] [-d] [-o [OUTPUT]] domain
 
-    Find internationalized domain-squats.
+    Find Unicode domain squats.
 
     positional arguments:
-     domain               Domain name from which to search
+      domain                domain name from which to search
 
     optional arguments:
-      -h, --help           show this help message and exit
-      -cc, --cyrillic_complete
-                           Use complete Cyrillic character set
-      -ca, --cyrillic_advanced
-                           Use advanced Cyrillic character set
-      -cs, --cyrillic_simplified
-                           Use simplified Cyrillic character set
-      -lc, --latin_complete
-                           Use complete Latin character set
-      -la, --latin_advanced
-                           Use advanced Latin character set
-      -ls, --latin_simplified
-                           Use simplified Latin character set
-      -gc, --greek_complete
-                           Use complete Greek character set
-      -ga, --greek_advanced
-                           Use advanced Greek character set
-      -gs, --greek_simplified
-                           Use simplified Greek character set
-      -d, --dns             Query DNS for each domain
+      -h, --help            show this help message and exit
+      -d, --dns             query DNS for each domain
       -o [OUTPUT], --output [OUTPUT]
-                            Path to file to which results will be written
+                            path to file to which results will be written
 
 Run Tests
 =========
 
 After cloning the repo, you can test it using the following commands from the base directory of this repository:
 
-- ``cd xn-twist;``
-- ``pytest``
+.. code-block:: shell
+
+    cd xn-twist;
+    pytest;
 
 Data, Data, Everywhere...
 ==========================
 
-*More details coming very soon*
+This project relies on a dataset. More details on how to access the dataset and even how to help us build it coming soon!
 
 Credits
 =======

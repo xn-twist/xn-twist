@@ -3,7 +3,7 @@
 #
 # Floyd Hightower <https://github.com/fhightower>
 # This project is licensed under an MIT License.
-"""Find internationalized domain-squats of a given domain."""
+"""Find Unicode domain squats of a given domain."""
 
 
 import argparse
@@ -14,7 +14,7 @@ import time
 
 import dns.resolver
 import tldextract
-from xntwist_python_sdk import xntwist_python
+from xntwist_python_sdk import xntwist_python_sdk
 
 
 CURRENT_DATETIME = str(datetime.datetime.today())
@@ -26,16 +26,16 @@ FUZZER_VERSION = '0.3.1'
 def init_parser():
     """Initialize the argument parser."""
     parser = argparse.ArgumentParser(description='Find Unicode ' +
-                                                 'domain-squats.')
+                                                 'domain squats.')
 
     # get domain from which internationalized domains squats will be derived
-    parser.add_argument('domain', help='Domain name from which to search')
+    parser.add_argument('domain', help='domain name from which to search')
 
     # other configurations
     parser.add_argument('-d', '--dns', action='store_true',
-                        help='Query DNS for each domain')
+                        help='query DNS for each domain')
     parser.add_argument('-o', '--output', nargs='?',
-                        help='Path to file to which results will be written')
+                        help='path to file to which results will be written')
 
     return parser.parse_args()
 
