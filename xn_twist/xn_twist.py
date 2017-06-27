@@ -14,7 +14,7 @@ import time
 
 import dns.resolver
 import tldextract
-from xntwist_python_sdk import xntwist_python_sdk
+from xntwist_python_sdk import xntwist_python
 
 
 CURRENT_DATETIME = str(datetime.datetime.today())
