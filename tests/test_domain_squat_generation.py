@@ -25,7 +25,7 @@ def args():
 
 def test_domain_squat_generation(args):
     """Test the domain squat creation process."""
-    spoofable_chars = xn_twist.get_spoofable_charset(args)[0]
+    spoofable_chars = xn_twist.get_spoofable_charset()
     assert len(spoofable_chars.keys()) == 1
 
     domain_name, domain_suffix = xn_twist.get_domain_details(args.domain)
