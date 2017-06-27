@@ -23,7 +23,7 @@ XN Twist
         :target: https://www.quantifiedcode.com/app/project/a9b6f9760c634223aca60788d0dffb6e
         :alt: Code issues
 
-*Unicode Domain-Squat Finder*
+*Find Unicode domain squats*
 
 Installation
 ============
