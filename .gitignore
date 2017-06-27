@@ -89,3 +89,6 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# Cookie cutter packaging file
+travis_pypi_setup.py
