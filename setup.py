@@ -7,8 +7,8 @@ with open('README.rst') as readme_file:
     readme = readme_file.read()
 
 requirements = [
-    "dnspython"
-    "tldextract"
+    "dnspython",
+    "tldextract",
     "xntwist_python_sdk"
 ]
 
