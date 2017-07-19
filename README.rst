@@ -2,10 +2,6 @@
 XN Twist
 ===============================
 
-.. image:: https://api.codacy.com/project/badge/Grade/166ee00207f5497da6316e35f4262bc0
-   :alt: Codacy Badge
-   :target: https://www.codacy.com/app/fhightower/xn-twist?utm_source=github.com&utm_medium=referral&utm_content=xn-twist/xn-twist&utm_campaign=badger
-
 .. image:: https://img.shields.io/pypi/v/xn-twist.svg
         :target: https://pypi.python.org/pypi/xn-twist
 
@@ -14,6 +10,10 @@ XN Twist
 
 .. image:: https://codecov.io/gh/xn-twist/xn-twist/branch/master/graph/badge.svg
   :target: https://codecov.io/gh/xn-twist/xn-twist
+
+  .. image:: https://api.codacy.com/project/badge/Grade/166ee00207f5497da6316e35f4262bc0
+     :alt: Codacy Badge
+     :target: https://www.codacy.com/app/fhightower/xn-twist
 
 .. image:: https://readthedocs.org/projects/xn-twist/badge/?version=latest
         :target: http://xn-twist.readthedocs.io/en/latest/?badge=latest
