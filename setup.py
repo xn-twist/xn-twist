@@ -8,6 +8,7 @@ with open('README.rst') as readme_file:
 
 requirements = [
     "dnspython",
+    "docopt>=0.6",
     "tldextract",
     "xntwist_python_sdk"
 ]
@@ -27,6 +28,11 @@ setup(
     packages=[
         'xn_twist',
     ],
+    entry_points={
+        'console_scripts': [
+            'xntwist=xn_twist.cli:main'
+        ]
+    },
     package_dir={'xn_twist':
                  'xn_twist'},
     include_package_data=True,
