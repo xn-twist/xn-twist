@@ -11,7 +11,7 @@ XN Twist
 .. image:: https://codecov.io/gh/xn-twist/xn-twist/branch/master/graph/badge.svg
   :target: https://codecov.io/gh/xn-twist/xn-twist
 
-  .. image:: https://api.codacy.com/project/badge/Grade/166ee00207f5497da6316e35f4262bc0
+.. image:: https://api.codacy.com/project/badge/Grade/166ee00207f5497da6316e35f4262bc0
      :alt: Codacy Badge
      :target: https://www.codacy.com/app/fhightower/xn-twist
 
@@ -22,10 +22,6 @@ XN Twist
 .. image:: https://pyup.io/repos/github/xn-twist/xn-twist/shield.svg
      :target: https://pyup.io/repos/github/xn-twist/xn-twist/
      :alt: Updates
-
-.. image:: https://www.quantifiedcode.com/api/v1/project/a9b6f9760c634223aca60788d0dffb6e/badge.svg
-        :target: https://www.quantifiedcode.com/app/project/a9b6f9760c634223aca60788d0dffb6e
-        :alt: Code issues
 
 *Find Unicode domain squats*
 
