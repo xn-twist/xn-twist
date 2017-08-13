@@ -74,20 +74,42 @@ Once you have a copy of the source, you can install it with:
 Usage
 =====
 
+Via Python
+----------
+
+You can use XN-Twist in a script as follows:
+
+.. code-block:: python
+
+    from xn_twist.xn_twist import XNTwist
+    xn = XNTwist()
+    domain_twist_results = xn.twist("example.com")
+
+Via Command Line
+----------------
+
+You can use XN-Twist from the command line as follows:
+
 .. code-block:: shell
 
-    usage: xn_twist.py [-h] [-d] [-o [OUTPUT]] domain
+    xntwist example.com
 
-    Find Unicode domain squats.
+The usage for the command line form of XN-Twist is as follows:
 
-    positional arguments:
-      domain                domain name from which to search
+.. code-block::
 
-    optional arguments:
-      -h, --help            show this help message and exit
-      -d, --dns             query DNS for each domain
-      -o [OUTPUT], --output [OUTPUT]
-                            path to file to which results will be written
+    XN Twist.
+
+    Usage:
+        xntwist <domain> [--dns] [--output=OUTPUT]
+        xntwist (-h | --help)
+        xntwist --version
+
+    Options:
+        -h --help     Show this screen.
+        --version     Show version.
+        -d --dns  Query DNS for each domain.
+        -o=OUTPUT --output=OUTPUT  Specify an output file.
 
 Run Tests
 =========
@@ -96,8 +118,7 @@ After cloning the repo, you can test it using the following commands from the ba
 
 .. code-block:: shell
 
-    cd xn-twist;
-    pytest;
+    make test
 
 Data, Data, Everywhere...
 ==========================

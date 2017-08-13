@@ -52,7 +52,6 @@ lint: ## check style with flake8
 
 test: ## run tests quickly with the default Python
 	py.test
-	
 
 test-all: ## run tests on every Python version with tox
 	tox
@@ -91,7 +90,7 @@ upstream: ## set the upstream for this repo (handy for development)
 	git remote add upstream https://github.com/xn-twist/xn-twist.git
 
 init: ## install the development requirements with pip (related to python2.x)
-    pip install -r requirements_dev.txt
+	pip install -r requirements_dev.txt
 
 init3: ## install the development requirements with pip3 (related to python3.x)
-    pip3 install -r requirements_dev.txt
+	pip3 install -r requirements_dev.txt

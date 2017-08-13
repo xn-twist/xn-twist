@@ -9,42 +9,36 @@ Tests domain squat generation in the `xn_twist` module.
 """
 
 import argparse
+import datetime
 
 import pytest
 
-from xn_twist import xn_twist
+from xn_twist.xn_twist import XNTwist
 
 
 @pytest.fixture
-def args():
-    """Return the character sets as a pytest fixture."""
-    default_args = argparse.Namespace(dns=False, domain='waffle.com')
-
-    return default_args
+def domain():
+    """Provide a domain for the tests."""
+    return "abc.com"
 
 
-def test_domain_squat_generation(args):
+def test_return_json_format(domain):
     """Test the domain squat creation process."""
-    spoofable_chars = xn_twist.get_spoofable_charset()
-    assert len(spoofable_chars.keys()) == 1
+    xn = XNTwist()
 
-    domain_name, domain_suffix = xn_twist.get_domain_details(args.domain)
-    assert domain_name == "waffle"
-    assert domain_suffix == "com"
+    twist_results = xn.twist(domain)
 
-    count = 0
-    spoofable_indices = list()
-    # find the index of each 'spoofable' character in the domain
-    for char in domain_name:
-        if char in spoofable_chars:
-            spoofable_indices.append(count)
+    # make sure the json only has one, top-level key
+    assert len(twist_results.keys()) == 1
 
-        count += 1
+    # make sure the top-level key has today's date in it
+    assert str(datetime.datetime.today().year) in twist_results.keys()[0]
 
-    combinations = list(xn_twist.get_combinations(spoofable_indices))
-    assert len(combinations) == 1
+    for sub_key in twist_results[twist_results.keys()[0]]:
+        assert ("version" in sub_key or domain in sub_key)
 
-    domain_squats = xn_twist.get_possible_domain_squats(domain_name,
-                                                        combinations,
-                                                        spoofable_chars)
-    assert len(domain_squats) == 5
+
+def test_api_handling():
+    """Test the response from the API."""
+    # TODO: Add better tests here that use mock to simulate an API (2)
+    pass
