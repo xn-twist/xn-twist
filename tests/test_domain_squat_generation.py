@@ -32,9 +32,10 @@ def test_return_json_format(domain):
     assert len(twist_results.keys()) == 1
 
     # make sure the top-level key has today's date in it
-    assert str(datetime.datetime.today().year) in twist_results.keys()[0]
+    assert str(datetime.datetime.today().year) in list(twist_results.keys())[0]
 
-    for sub_key in twist_results[twist_results.keys()[0]]:
+    # test to make sure that the version number is printed in the output json
+    for sub_key in twist_results[list(twist_results.keys())[0]]:
         assert ("version" in sub_key or domain in sub_key)
 
 
