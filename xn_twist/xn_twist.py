@@ -20,7 +20,7 @@ from xn_twist_python_sdk import xn_twist_python
 CURRENT_DATETIME = str(datetime.datetime.today())
 # TODO: implement the char-set-version on the API/sdk
 CHAR_SET_VERSION = '0.1'
-FUZZER_VERSION = '1.0.0'
+FUZZER_VERSION = '1.0.1'
 
 
 class XNTwist(object):
