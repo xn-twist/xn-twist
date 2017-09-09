@@ -14,7 +14,7 @@ import time
 
 import dns.resolver
 import tldextract
-from xntwist_python_sdk import xntwist_python
+from xn_twist_python_sdk import xn_twist_python
 
 
 CURRENT_DATETIME = str(datetime.datetime.today())
@@ -30,7 +30,7 @@ class XNTwist(object):
         self.output = output
 
         # instantiate an instance of the XN-Twist Python SDK
-        self.xn_sdk = xntwist_python.XnTwistSDK()
+        self.xn_sdk = xn_twist_python.XnTwistSDK()
 
     @staticmethod
     def get_domain_details(domain):

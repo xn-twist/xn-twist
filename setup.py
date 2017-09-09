@@ -10,7 +10,7 @@ requirements = [
     "dnspython",
     "docopt>=0.6",
     "tldextract",
-    "xntwist_python_sdk"
+    "xn_twist_python_sdk"
 ]
 
 test_requirements = [
