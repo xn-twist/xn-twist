@@ -16,11 +16,9 @@ import dns.resolver
 import tldextract
 from xn_twist_python_sdk import xn_twist_python
 
+from .__init__ import __version__ as XN_TWIST_VERSION
 
 CURRENT_DATETIME = str(datetime.datetime.today())
-# TODO: implement the char-set-version on the API/sdk
-CHAR_SET_VERSION = '0.1'
-FUZZER_VERSION = '1.0.1'
 
 
 class XNTwist(object):
@@ -111,17 +109,14 @@ class XNTwist(object):
                                       dns_query, output_file=None):
         """Display each of the possible, internationalized domain squats."""
         output_json = dict()
-        output_json[CURRENT_DATETIME] = dict()
-        output_json[CURRENT_DATETIME]["{}.".format(real_domain_name) +
-                                      "{}".format(domain_suffix)] = dict()
-        output_json[CURRENT_DATETIME]['character_set_version'] = CHAR_SET_VERSION
-        output_json[CURRENT_DATETIME]['fuzzer_version'] = FUZZER_VERSION
-
-        current_location = output_json[CURRENT_DATETIME]["{}.{}".format(
-            real_domain_name, domain_suffix)]
-        current_location['possible_squats'] = list()
-        possible_squats_list = current_location['possible_squats']
-        current_location['results'] = len(possible_domain_squats)
+        output_json['possible_squats'] = list()
+        possible_squats_list = output_json['possible_squats']
+        # add a count of the results
+        output_json['results_count'] = len(possible_domain_squats)
+        # add the datetimestamp
+        output_json['datetime'] = CURRENT_DATETIME
+        # add the xn-twist version number
+        output_json['xn_twist_version'] = XN_TWIST_VERSION
 
         for squat in possible_domain_squats:
             domain_dict = dict()
