@@ -5,8 +5,6 @@
 # This project is licensed under an MIT License.
 """Find Unicode domain squats of a given domain."""
 
-
-import argparse
 import datetime
 import itertools
 import json
