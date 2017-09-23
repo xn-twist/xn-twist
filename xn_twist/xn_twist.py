@@ -125,7 +125,7 @@ class XNTwist(object):
             punycode_domain_name = "xn--{}.{}".format(
                 str(squat.encode("punycode").decode("utf-8")), domain_suffix)
             if dns_query:
-                domain_dns = [dns_record for dns_record in set(get_domain_dns(
+                domain_dns = [dns_record for dns_record in set(self.get_domain_dns(
                     punycode_domain_name))]
                 domain_dict['dns'] = domain_dns
                 time.sleep(10)
