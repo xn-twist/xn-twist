@@ -54,7 +54,7 @@ class XNTwist(object):
                 )
 
     @staticmethod
-    def get_possible_domain_squats(domain_name, combinations, SPOOFABLE_CHARS):
+    def get_possible_squats(domain_name, combinations, SPOOFABLE_CHARS):
         """Construct all of the possible internationalized domain squats."""
         domains = list()
 
@@ -103,9 +103,9 @@ class XNTwist(object):
 
         return dns_records
 
-    @staticmethod
-    def output_possible_domain_squats(possible_domain_squats, real_domain_name,
-                                      domain_suffix, dns_query, output_file=None):
+    def output_possible_domain_squats(self, possible_domain_squats,
+                                      real_domain_name, domain_suffix,
+                                      dns_query, output_file=None):
         """Display each of the possible, internationalized domain squats."""
         output_json = dict()
         output_json[CURRENT_DATETIME] = dict()
@@ -125,8 +125,8 @@ class XNTwist(object):
             punycode_domain_name = "xn--{}.{}".format(
                 str(squat.encode("punycode").decode("utf-8")), domain_suffix)
             if dns_query:
-                domain_dns = [dns_record for dns_record in set(self.get_domain_dns(
-                    punycode_domain_name))]
+                dns_ips = set(self.get_domain_dns(punycode_domain_name))
+                domain_dns = [dns_record for dns_record in dns_ips]
                 domain_dict['dns'] = domain_dns
                 time.sleep(10)
 
@@ -167,15 +167,18 @@ class XNTwist(object):
         # find all possible combinations of the 'spoofable' indices
         combinations = list(self.get_combinations(spoofable_indices))
 
-        print("Found {} combinations\n".format(len(combinations)))
-
         # create each domain squat
-        possible_domain_squats = self.get_possible_domain_squats(domain_name,
-                                                            combinations,
-                                                            SPOOFABLE_CHARS)
+        possible_squats = self.get_possible_squats(domain_name,
+                                                   combinations,
+                                                   SPOOFABLE_CHARS)
+
+        print("Found {} potential squats\n".format(len(possible_squats)))
 
         # display each possible domain squat
-        output_json = self.output_possible_domain_squats(possible_domain_squats, domain_name, domain_suffix, self.dns, self.output)
+        output_json = self.output_possible_domain_squats(possible_squats,
+                                                         domain_name,
+                                                         domain_suffix,
+                                                         self.dns, self.output)
 
         # return the results
         return output_json
