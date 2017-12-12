@@ -8,12 +8,11 @@ test_domain_squat_generation.py
 Tests domain squat generation in the `xn_twist` module.
 """
 
-import argparse
-import datetime
+from datetime import datetime
 
 import pytest
 
-from xn_twist.xn_twist import XNTwist
+from xn_twist import XNTwist, __version__
 
 
 @pytest.fixture
@@ -28,15 +27,11 @@ def test_return_json_format(domain):
 
     twist_results = xn.twist(domain)
 
-    # make sure the json only has one, top-level key
-    assert len(twist_results.keys()) == 1
+    assert len(twist_results.keys()) == 4
 
-    # make sure the top-level key has today's date in it
-    assert str(datetime.datetime.today().year) in list(twist_results.keys())[0]
+    assert twist_results['datetime'].split("-")[0] == str(datetime.today().year)
 
-    # test to make sure that the version number is printed in the output json
-    for sub_key in twist_results[list(twist_results.keys())[0]]:
-        assert ("version" in sub_key or domain in sub_key)
+    assert twist_results['xn_twist_version'] == __version__
 
 
 def test_api_handling():

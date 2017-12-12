@@ -81,7 +81,7 @@ You can use XN-Twist in a script as follows:
 
 .. code-block:: python
 
-    from xn_twist.xn_twist import XNTwist
+    from xn_twist import XNTwist
     xn = XNTwist()
     domain_twist_results = xn.twist("example.com")
 

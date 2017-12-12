@@ -14,8 +14,6 @@ import dns.resolver
 import tldextract
 from xn_twist_python_sdk import xn_twist_python
 
-from .__init__ import __version__ as XN_TWIST_VERSION
-
 CURRENT_DATETIME = str(datetime.datetime.today())
 
 
@@ -178,3 +176,7 @@ class XNTwist(object):
 
         # return the results
         return output_json
+
+
+# this import needs to come after the declaration of the `XNTwist` class so that __init__.py can import the XNTwist before this file tries to get the version from __init__.py
+from .__init__ import __version__ as XN_TWIST_VERSION
