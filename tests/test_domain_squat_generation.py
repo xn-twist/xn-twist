@@ -28,13 +28,18 @@ def test_return_json_format(domain):
     twist_results = xn.twist(domain)
 
     assert len(twist_results.keys()) == 4
-
     assert twist_results['datetime'].split("-")[0] == str(datetime.today().year)
-
     assert twist_results['xn_twist_version'] == __version__
+    assert len(twist_results['possible_squats']) == 215
 
 
-def test_api_handling():
-    """Test the response from the API."""
-    # TODO: Add better tests here that use mock to simulate an API (2)
-    pass
+def test_limit(domain):
+    """Test the domain squat creation process."""
+    xn = XNTwist()
+
+    twist_results = xn.twist(domain, limit=2)
+
+    assert len(twist_results.keys()) == 4
+    assert twist_results['datetime'].split("-")[0] == str(datetime.today().year)
+    assert twist_results['xn_twist_version'] == __version__
+    assert len(twist_results['possible_squats']) == 26

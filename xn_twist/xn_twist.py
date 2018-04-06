@@ -32,9 +32,7 @@ class XNTwist(object):
         parsed_domain = tldextract.extract(domain)
 
         if parsed_domain.subdomain:
-            print("Currently, subdomains are not twisted and will be ignored. " +
-                  "If you'd like to see this functionality added, let me know " +
-                  "here: https://github.com/xn-twist/xn-twist/issues/17.")
+            print("Currently, subdomains are not twisted and will be ignored. If you'd like to see this functionality added, let me know here: https://github.com/xn-twist/xn-twist/issues/17.")
 
         return parsed_domain.domain, parsed_domain.suffix
 
@@ -100,15 +98,13 @@ class XNTwist(object):
 
         return dns_records
 
-    def output_possible_domain_squats(self, possible_domain_squats,
-                                      real_domain_name, domain_suffix,
-                                      dns_query, output_file=None):
+    def output_possible_domain_squats(self, possible_domain_squats, real_domain_name, domain_suffix, dns_query, output_file=None):
         """Display each of the possible, internationalized domain squats."""
         output_json = dict()
         output_json['possible_squats'] = list()
         possible_squats_list = output_json['possible_squats']
         # add a count of the results
-        output_json['results_count'] = len(possible_domain_squats)
+        output_json['count'] = len(possible_domain_squats)
         # add the datetimestamp
         output_json['datetime'] = CURRENT_DATETIME
         # add the xn-twist version number
@@ -141,9 +137,9 @@ class XNTwist(object):
 
         return output_json
 
-    def twist(self, domain):
+    def twist(self, domain, limit=5):
         """Find the internationalized domain squats for a given domain."""
-        SPOOFABLE_CHARS = self.xn_sdk.retrieve_dataset()
+        SPOOFABLE_CHARS = self.xn_sdk.retrieve_dataset(limit=limit)
 
         # get the domain from which we should look for domain squats
         domain_name, domain_suffix = self.get_domain_details(domain)
@@ -162,17 +158,12 @@ class XNTwist(object):
         combinations = list(self.get_combinations(spoofable_indices))
 
         # create each domain squat
-        possible_squats = self.get_possible_squats(domain_name,
-                                                   combinations,
-                                                   SPOOFABLE_CHARS)
+        possible_squats = self.get_possible_squats(domain_name, combinations, SPOOFABLE_CHARS)
 
         print("Found {} potential squats\n".format(len(possible_squats)))
 
         # display each possible domain squat
-        output_json = self.output_possible_domain_squats(possible_squats,
-                                                         domain_name,
-                                                         domain_suffix,
-                                                         self.dns, self.output)
+        output_json = self.output_possible_domain_squats(possible_squats, domain_name, domain_suffix, self.dns, self.output)
 
         # return the results
         return output_json
