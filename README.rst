@@ -89,6 +89,58 @@ There is an optional ``limit`` value that can be passed into the ``twist`` funct
     xn = XNTwist()
     twist_results = xn.twist('example.com', limit=2)
 
+The response will be json that looks something like:
+
+.. code-block:: json
+
+    {
+        "datetime": "2018-04-06 05:33:45.889048",
+        "possible_squats": [
+            {
+                "displayed": "\u0430.com",
+                "punycode": "xn--80a.com"
+            },
+            {
+                "displayed": "\u0105.com",
+                "punycode": "xn--2da.com"
+            },
+            {
+                "displayed": "\u03ac.com",
+                "punycode": "xn--hxa.com"
+            },
+            {
+                "displayed": "\u00e1.com",
+                "punycode": "xn--1ca.com"
+            },
+            {
+                "displayed": "\u01ce.com",
+                "punycode": "xn--tja.com"
+            },
+            {
+                "displayed": "\u1f05.com",
+                "punycode": "xn--ing.com"
+            },
+            {
+                "displayed": "\u01df.com",
+                "punycode": "xn--bka.com"
+            },
+            {
+                "displayed": "\u1f00.com",
+                "punycode": "xn--dng.com"
+            },
+            {
+                "displayed": "\u1f01.com",
+                "punycode": "xn--eng.com"
+            },
+            {
+                "displayed": "\u00e4.com",
+                "punycode": "xn--4ca.com"
+            }
+        ],
+        "count": 10,
+        "xn_twist_version": "1.2.0"
+    }
+
 Via Command Line
 ----------------
 
