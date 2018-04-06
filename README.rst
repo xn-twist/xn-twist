@@ -2,6 +2,8 @@
 XN Twist
 ===============================
 
+*Find Unicode domain squats*
+
 .. image:: https://img.shields.io/pypi/v/xn-twist.svg
         :target: https://pypi.python.org/pypi/xn-twist
 
@@ -15,15 +17,9 @@ XN Twist
      :alt: Codacy Badge
      :target: https://www.codacy.com/app/fhightower/xn-twist
 
-.. image:: https://readthedocs.org/projects/xn-twist/badge/?version=latest
-        :target: http://xn-twist.readthedocs.io/en/latest/?badge=latest
-        :alt: Documentation Status
-
 .. image:: https://pyup.io/repos/github/xn-twist/xn-twist/shield.svg
      :target: https://pyup.io/repos/github/xn-twist/xn-twist/
      :alt: Updates
-
-*Find Unicode domain squats*
 
 Installation
 ============
@@ -83,7 +79,15 @@ You can use XN-Twist in a script as follows:
 
     from xn_twist import XNTwist
     xn = XNTwist()
-    domain_twist_results = xn.twist("example.com")
+    twist_results = xn.twist('example.com')
+
+There is an optional ``limit`` value that can be passed into the ``twist`` function to limit the number of characters used as a spoofs. This cuts down on the processing load and makes the results manageable. An example usage is shown below.
+
+.. code-block:: python
+
+    from xn_twist import XNTwist
+    xn = XNTwist()
+    twist_results = xn.twist('example.com', limit=2)
 
 Via Command Line
 ----------------
@@ -101,13 +105,14 @@ The usage for the command line form of XN-Twist is as follows:
     XN Twist.
 
     Usage:
-        xntwist <domain> [--dns] [--output=OUTPUT]
+        xntwist <domain> [--limit=LIMIT] [--dns] [--output=OUTPUT]
         xntwist (-h | --help)
         xntwist --version
 
     Options:
         -h --help     Show this screen.
         --version     Show version.
+        -l=LIMIT --limit=LIMIT    Limit the number of characters used as spoofs [default: 5].
         -d --dns  Query DNS for each domain.
         -o=OUTPUT --output=OUTPUT  Specify an output file.
 
