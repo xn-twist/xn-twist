@@ -81,7 +81,12 @@ You can use XN-Twist in a script as follows:
     xn = XNTwist()
     twist_results = xn.twist('example.com')
 
-There is an optional ``limit`` value that can be passed into the ``twist`` function to limit the number of characters used as a spoofs. This cuts down on the processing load and makes the results manageable. An example usage is shown below.
+The following parameters can be passed into the initialization of the ``XNTwist`` object:
+
+- ``query_dns``: Specify whether or not you would like to query dns values for the domains. Defaults to ``False``. **Be aware that setting this value to ``True`` will slow the twisting process down significantly.**
+- ``output``: Specify an output file to which the json output of the algorithm will be written.
+
+When calling the ``twist()`` function, there is an optional ``limit`` value that can be passed into the ``twist`` function to limit the number of characters used as a spoofs. This cuts down on the processing load and makes the results manageable. An example usage is shown below.
 
 .. code-block:: python
 

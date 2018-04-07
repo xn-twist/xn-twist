@@ -24,7 +24,6 @@ def domain():
 def test_return_json_format(domain):
     """Test the domain squat creation process."""
     xn = XNTwist()
-
     twist_results = xn.twist(domain)
 
     assert len(twist_results.keys()) == 4
@@ -36,7 +35,6 @@ def test_return_json_format(domain):
 def test_limit(domain):
     """Test the domain squat creation process."""
     xn = XNTwist()
-
     twist_results = xn.twist(domain, limit=2)
 
     assert len(twist_results.keys()) == 4
