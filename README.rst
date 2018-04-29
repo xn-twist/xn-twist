@@ -86,13 +86,21 @@ The following parameters can be passed into the initialization of the ``XNTwist`
 - ``query_dns``: Specify whether or not you would like to query dns values for the domains. Defaults to ``False``. **Be aware that setting this value to ``True`` will slow the twisting process down significantly.**
 - ``output``: Specify an output file to which the json output of the algorithm will be written.
 
-When calling the ``twist()`` function, there is an optional ``limit`` value that can be passed into the ``twist`` function to limit the number of characters used as a spoofs. This cuts down on the processing load and makes the results manageable. An example usage is shown below.
+When calling the ``twist()`` function, there is an optional ``limit`` value which limits the number of characters used as a spoofs. This cuts down on the processing load and makes the results manageable. An example usage is shown below.
 
 .. code-block:: python
 
     from xn_twist import XNTwist
     xn = XNTwist()
     twist_results = xn.twist('example.com', limit=2)
+
+When calling the ``twist()`` function, there is an optional ``simple`` value which only returns possible domain squats with one character changed rather than all of the possible permutations (the default is ``FALSE``). This cuts down on the processing load and makes the results manageable. An example usage is shown below.
+
+.. code-block:: python
+
+    from xn_twist import XNTwist
+    xn = XNTwist()
+    twist_results = xn.twist('example.com', simple=True)
 
 The response will be json that looks something like:
 

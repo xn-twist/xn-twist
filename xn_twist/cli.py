@@ -4,7 +4,7 @@
 """XN Twist.
 
 Usage:
-    xntwist <domain> [--limit=LIMIT] [--dns] [--output=OUTPUT]
+    xntwist <domain> [--limit=LIMIT] [--dns] [--output=OUTPUT] [--simple]
     xntwist (-h | --help)
     xntwist --version
 
@@ -14,6 +14,7 @@ Options:
     -l=LIMIT --limit=LIMIT    Limit the number of characters used as spoofs [default: 5].
     -d --dns  Query DNS for each domain.
     -o=OUTPUT --output=OUTPUT  Specify an output file.
+    -s --simple Return only possible squats with one character changed [default: False].
 """
 
 from docopt import docopt
@@ -29,7 +30,7 @@ def main(args=None):
     xn = XNTwist(query_dns=arguments['--dns'], output=arguments['--output'])
 
     # twist the given domain
-    xn.twist(arguments['<domain>'], limit=arguments['--limit'])
+    xn.twist(arguments['<domain>'], limit=arguments['--limit'], simple=arguments['--simple'])
 
 
 if __name__ == "__main__":

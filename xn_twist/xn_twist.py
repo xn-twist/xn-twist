@@ -139,7 +139,7 @@ class XNTwist(object):
 
         return output_json
 
-    def twist(self, domain, limit=DEFAULT_LIMIT):
+    def twist(self, domain, limit=DEFAULT_LIMIT, simple=False):
         """Find the internationalized domain squats for a given domain."""
         # if the limit is changed, get a new dataset
         if limit != self.limit or len(self.spoofable_chars) == 0:
@@ -160,6 +160,9 @@ class XNTwist(object):
 
         # find all possible combinations of the 'spoofable' indices
         combinations = list(self._get_combinations(spoofable_indices))
+
+        if simple:
+            combinations = [combo for combo in combinations if len(combo) == 1]
 
         # create each domain squat
         possible_squats = self._get_possible_squats(domain_name, combinations)

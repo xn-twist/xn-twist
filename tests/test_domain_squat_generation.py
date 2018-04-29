@@ -41,3 +41,14 @@ def test_limit(domain):
     assert twist_results['datetime'].split("-")[0] == str(datetime.today().year)
     assert twist_results['xn_twist_version'] == __version__
     assert len(twist_results['possible_squats']) == 26
+
+
+def test_simple(domain):
+    """Test the domain squat creation process with the simple mode turned on."""
+    xn = XNTwist()
+    twist_results = xn.twist(domain, simple=True)
+
+    assert len(twist_results.keys()) == 4
+    assert twist_results['datetime'].split("-")[0] == str(datetime.today().year)
+    assert twist_results['xn_twist_version'] == __version__
+    assert len(twist_results['possible_squats']) == 15
