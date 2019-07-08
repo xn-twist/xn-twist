@@ -97,6 +97,9 @@ class XNTwist(object):
         except dns.resolver.NoAnswer as e:
             # the resolver is not answering so dns resolutions remain empty
             pass
+        except dns.resolver.NoNameservers as e:
+            # the nameservers are not answering so dns resolutions remain empty
+            pass
 
         return dns_records
 
