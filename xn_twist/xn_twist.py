@@ -10,7 +10,7 @@ import itertools
 import json
 import time
 
-import dns.resolver
+import dns.resolver, dns.exception
 import tldextract
 from xn_twist_python_sdk import xn_twist_python
 
@@ -99,6 +99,9 @@ class XNTwist(object):
             pass
         except dns.resolver.NoNameservers as e:
             # the nameservers are not answering so dns resolutions remain empty
+            pass
+        except dns.exception.DNSException:
+            # other dns resolver exception occurred
             pass
 
         return dns_records
