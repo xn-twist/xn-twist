@@ -9,4 +9,4 @@ Sphinx==1.4.8
 PyYAML==3.11
 pytest==2.9.2
 pytest-cov==2.4.0
-codecov==2.0.5
+codecov==2.0.18
