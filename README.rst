@@ -21,6 +21,8 @@ XN Twist
      :target: https://pyup.io/repos/github/xn-twist/xn-twist/
      :alt: Updates
 
+**NOTE: ** As of September, 2020, this project will be deprecated (likely in early 2021), but the functionality will still exist in another project (yet to be released).
+
 Installation
 ============
 
